@@ -80,7 +80,7 @@ app.post('/', function (req, res) {
 
 app.post('/message', function (req, res) {
 
-  fs.appendFile("messages.log", "\n" + new Date() + " - " + req.body.msg, function (err) {
+  fs.appendFile("./log/messages.log", "\n" + new Date() + " - " + req.body.msg, function (err) {
     if (err) {
       return console.log(err);
     }
