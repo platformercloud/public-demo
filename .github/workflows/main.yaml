@@ -29,7 +29,7 @@ jobs:
         REPO_NAME: ${{ github.event.repository.name }} 
         TAG: ${{github.sha}}
     - name: Platformer Deploy
-      uses: platformer-com/build-deploy-action@v0.2
+      uses: platformer-com/build-deploy-action@v0.3
       with:
        domain: https://api.ambassador.dev.platformer.com
        org-id: ${{secrets.ORG_ID}}
