@@ -1,0 +1,168 @@
+<main class="profile-page">
+    <section class=" section-profile-cover section-shaped my-0" style="background-color:rgba(0, 0, 0, 0.2)">
+        <!-- Circles background -->
+        <div class="shape shape-primary alpha-4"
+            style="background: url('../assets/img/brand/mesh-bg-dark.svg');background-color:#0076d1;">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- SVG separator -->
+        <div class="separator separator-bottom separator-skew">
+            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+                xmlns="http://www.w3.org/2000/svg">
+                <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+            </svg>
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+            <div class="card p-4 shadow mt--500">
+
+                <h4 class="mb-4"> Manage your configurations per environment very easily. </h4>
+                <table class="table table-hover">
+
+                    <tr>
+                        <td>
+                            <span class="badge badge-primary"> Environment Variable</span>
+                            <p>
+                                <small> Shows the value passed in as the environment variable.
+                                    <code>[ENV_NAME] </code></small>
+                            </p>
+                        </td>
+                        <td class="strong">{{ENV_NAME}}</td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="badge badge-primary">Encrypted Environment Variable</span>
+                            <p>
+                                <small> Shows sensitive values passed in as an environment variable.
+                                    <code> [ENV_NAME_ENCRYPT] </code></small>
+                            </p>
+                        </td>
+                        <td class="strong"> {{ENV_NAME_ENCRYPT}}</td>
+
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <span class="badge badge-primary">Value from Config</span>
+                            <p>
+                                <small> Shows a value taken from a mounted file <code> [/app/config.json] </code> in the
+                                    container.
+                                    <code>APP_VERSION</code> is the key shown here. </small>
+                            </p>
+                        </td>
+                        <td class="strong">{{CONFIG_VERSION}}</td>
+
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <span class="badge badge-primary">Encrypted Value from Config</span>
+                            <p>
+                                <small> Shows Sensitive value taken from a mounted file
+                                    <code> [/app/config.secret.json] </code> in the container.
+                                    <code>API_KEY</code> is the key shown here. </small>
+                            </p>
+                        </td>
+                        <td class="strong">{{CONFIG_ENCRYPT}}</td>
+
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <span class="badge badge-primary">Image Version</span>
+                            <p>
+                                <small> The version/tag of the image running is injected as an env variable
+                                    <code>[PLATFORMER_IMG_TAG]</code> by default </small.>
+                            </p>
+                        </td>
+                        <td class="strong">{{PLATFORMER_IMG_TAG}}</td>
+
+                    </tr>
+                </table>
+            </div>
+
+            <div class="card shadow p-4 mt-4">
+
+                <h4 class="mb-4"> Upload Items to a Distributed Volume </h4>
+                <form action="/" enctype="multipart/form-data" method="post">
+                    <input type="file" name="upload" multiple>
+                    <input class="btn btn-round btn-default" type="submit" value="Upload">
+                </form>
+                <hr>
+                <h6> Uploaded Files </h6>
+                <ul>
+                    {{#each uploads}}
+                    <li>
+                        <a href="{{url}}" target="_blank">{{name}}</a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+
+    <div style="background-color:rgba(0, 0, 0, 0.2)">
+        <section class="section section-lg "
+            style="background: url('../assets/img/brand/mesh-bg-dark.svg');background-color:#0076d1;">
+            <div class="container pt-lg pb-100">
+                <div class="row text-center justify-content-center">
+                    <div class="col-lg-10">
+
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- SVG separator -->
+            <div class="separator separator-bottom separator-skew zindex-100">
+                <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+                </svg>
+            </div>
+        </section>
+    </div>
+    <section class="section section-lg pt-lg-0 section-contact-us">
+        <div class="container">
+            <div class="row justify-content-center mt--300">
+                <div class="col-lg-12">
+                    <form action="/message" method="post">
+
+                        <div class="card bg-gradient-secondary shadow">
+                            <div class="card-body p-lg-5">
+                                <h4 class="mb-1">Custom Log Streams</h4>
+                                <p class="mt-0">The messages will be saved in a file called <code>messages.log</code>.
+                                </p>
+
+                                <div class="form-group mb-4">
+                                    <textarea class="form-control form-control-alternative" name="msg" rows="4"
+                                        cols="80" placeholder="Type a message..."></textarea>
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn btn-default btn-round btn-block btn-lg">Send
+                                        Message</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</main>
