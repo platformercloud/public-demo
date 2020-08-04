@@ -30,7 +30,7 @@ jobs:
     - name: Platformer Deploy
       uses: platformer-com/build-deploy-action@v1
       with:
-       domain: https://beta.api.platformer.com/rudder
+       domain: https://beta.api.platformer.com
        org-id: ${{secrets.ORG_ID}}
        project-id: ${{secrets.PROJECT_ID}}
        token: ${{secrets.TOKEN}}
