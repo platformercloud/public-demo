@@ -5,7 +5,6 @@ on:
     branches: [ github-action ]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     steps:
@@ -29,12 +28,13 @@ jobs:
         REPO_NAME: ${{ github.event.repository.name }} 
         TAG: ${{github.sha}}
     - name: Platformer Deploy
-      uses: platformer-com/build-deploy-action@v0.5
+      uses: platformer-com/build-deploy-action@v1
       with:
-       domain: https://api.ambassador.dev.platformer.com
+       domain: https://beta.api.platformer.com/rudder
        org-id: ${{secrets.ORG_ID}}
        project-id: ${{secrets.PROJECT_ID}}
        token: ${{secrets.TOKEN}}
        image-name: ${{secrets.DOCKER_USER}}/${{ github.event.repository.name }} 
        tag: ${{github.sha}}
-       container-id: 4aa99bf7-0b03-4a4e-82c5-a90c483872fb
+       container-id: 9c552aa1-45b1-49ad-bdfd-c7d23bc287bc
+    
