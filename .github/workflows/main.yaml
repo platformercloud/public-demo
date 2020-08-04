@@ -1,0 +1,61 @@
+on: [push]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Hello world action step
+        uses: ./ # Uses an action in the root directory
+        id: hello
+        with:
+          who-to-greet: 'Mona the Octocat'
+      # Use the output from the `hello` step
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
+name: Docker Image CI
+---
+on:
+  push:
+    branches: [ github-action ]
+  pull_request:
+    branches: [ github-action ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: docker login
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
+    - name: Build the Docker image
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        REPO_NAME: ${{ github.event.repository.name }} 
+        TAG: ${{GITHUB_SHA}}
+      run: docker build . --file Dockerfile --tag ${DOCKER_USER}/${REPO_NAME}:${TAG}
+    - name: Docker Push
+      run: docker push ${DOCKER_USER}/${REPO_NAME}:${TAG}
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        REPO_NAME: ${{ github.event.repository.name }} 
+        TAG: ${{GITHUB_SHA}}
+    - name: Platformer Deploy
+      uses: platformer-com/build-deploy-action@v0.1
+      with:
+       domain: https://api.ambassador.dev.platformer.com
+       org-id: ${{secrets.ORG_ID}}
+       project-id: ${{secrets.PROJECT_ID}}
+       token: ${{secrets.TOKEN}}
+       image-name: ${{DOCKER_USER}}/${{REPO_NAME}}
+       tag: ${{GITHUB_SHA}}
+       container-id: 4aa99bf7-0b03-4a4e-82c5-a90c483872fb
