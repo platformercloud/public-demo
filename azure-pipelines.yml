@@ -60,5 +60,5 @@ stages:
             "container_id": "$(containerID)",   
             "image_name_with_tag": "$(containerRegistry)/$(imageRepository):$(tag)" 
           }
-        urlSuffix: '/rudder/webhook/v1/container'
+        urlSuffix: 'rudder/webhook/v1/container'
         waitForCompletion: 'true'
