@@ -47,7 +47,7 @@ stages:
         connectionType: 'connectedServiceName'
         serviceConnection: 'Platformer API'
         method: 'POST'
-        headers: '{ Content-Type:application/json, x-organization-id: $(ORG_ID), x-project-id: $(PROJECT_ID), Authorization: $(TOKEN) }'
+        headers: '{ "Content-Type":application/json, "x-organization-id": $(ORG_ID), "x-project-id": $(PROJECT_ID), "Authorization": $(TOKEN) }'
         body: |
           {  
             "container_id": "$(containerID)",   
