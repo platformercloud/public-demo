@@ -3,7 +3,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- azure-pipelines
+- azure-pipeline
 
 resources:
 - repo: self
@@ -15,7 +15,6 @@ variables:
   containerRegistry: 'publicdemo.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
-  platformerAPI: 'https://beta.api.platformer.com/rudder/webhook/v1/container'
   containerID: '212d4931-4ad5-4253-b932-271127ae7a81'
   
   # Agent VM image name
@@ -40,10 +39,16 @@ stages:
         tags: |
           $(tag)
     - task: InvokeRESTAPI@1
-      displayName: Deploy on Platformer
       inputs:
-        serviceConnection: "$(platformerAPI)"
-        method: "POST"
+        connectionType: 'connectedServiceName'
+        serviceConnection: 'Platformer API'
+        method: 'POST'
         headers: '{ Content-Type:application/json, x-organization-id: $(ORG_ID), x-project-id: $(PROJECT_ID), Authorization: $(TOKEN) }'
-        body: '{  "container_id": "$(containerID)",   "image_name_with_tag": "$(containerRegistry)/$(imageRepository):$(tag)"  }'
-        waitForCompletion: "true"
+        body: |
+          {  
+            "container_id": "$(containerID)",   
+            "image_name_with_tag": "$(containerRegistry)/$(imageRepository):$(tag)" 
+                    
+          }
+        urlSuffix: '/rudder/webhook/v1/container'
+        waitForCompletion: 'true'
