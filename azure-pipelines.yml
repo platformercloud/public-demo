@@ -40,6 +40,7 @@ stages:
           $(tag)
   - job: Deploy
     displayName: Deploy
+    pool: server
     steps:
     - task: InvokeRESTAPI@1
       inputs:
