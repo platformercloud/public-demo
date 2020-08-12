@@ -38,6 +38,9 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+  - job: Deploy
+    displayName: Deploy
+    steps:
     - task: InvokeRESTAPI@1
       inputs:
         connectionType: 'connectedServiceName'
