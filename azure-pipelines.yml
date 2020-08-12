@@ -40,6 +40,7 @@ stages:
           $(tag)
   - job: Deploy
     displayName: Deploy
+    dependsOn: Build
     pool: server
     steps:
     - task: InvokeRESTAPI@1
@@ -47,12 +48,17 @@ stages:
         connectionType: 'connectedServiceName'
         serviceConnection: 'Platformer API'
         method: 'POST'
-        headers: '{ "Content-Type":application/json, "x-organization-id": $(ORG_ID), "x-project-id": $(PROJECT_ID), "Authorization": $(TOKEN) }'
+        headers: |
+          { 
+            "Content-Type": "application/json",
+            "x-organization-id": "$(ORG_ID)", 
+            "x-project-id": "$(PROJECT_ID)", 
+            "Authorization": "$(TOKEN)" 
+          }
         body: |
           {  
             "container_id": "$(containerID)",   
             "image_name_with_tag": "$(containerRegistry)/$(imageRepository):$(tag)" 
-                    
           }
         urlSuffix: '/rudder/webhook/v1/container'
         waitForCompletion: 'true'
