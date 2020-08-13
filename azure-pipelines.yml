@@ -15,7 +15,7 @@ variables:
   containerRegistry: 'publicdemo.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
-  containerID: 'e7ef0e49-2efa-4c81-ad9c-32d9ed321201'
+  containerID: 'ded52b40-40ea-4824-b470-1851b4c07dd2'
   
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
