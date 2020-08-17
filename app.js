@@ -32,7 +32,8 @@ app.get('/', async (req, res) => {
       CONFIG_VERSION: config.APP_VERSION,
       CONFIG_ENCRYPT: secret.API_KEY,
       PLATFORMER_IMG_TAG: process.env.PLATFORMER_IMG_TAG,
-      uploads: uploads
+      uploads: uploads,
+      COMMIT_MSG: "Demo commit to client"
     });
   }
   catch (e) {
