@@ -36,5 +36,5 @@ jobs:
        token: ${{secrets.TOKEN}}
        image-name: ${{secrets.DOCKER_USER}}/${{ github.event.repository.name }} 
        tag: ${{github.sha}}
-       container-id: 9c552aa1-45b1-49ad-bdfd-c7d23bc287bc
+       container-id: ${{secrets.CONTAINER_ID}}
     
