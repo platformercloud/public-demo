@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    reloader.stakater.com/auto: "true"
+  labels:
+    app_environment_id: 023b4d66-b63b-4b7f-aa24-62109172d4fa
+    env_id: a2651489-100e-4f7f-9e1c-da53432c7fff
+    env_name: staging-aws
+    organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+    platformer_app_id: 25e18063-59ba-483f-a990-7e8509cc800c
+    platformer_app_name: demo-app
+    platformer_component: rudder
+    platformer_system: "true"
+    project_id: a028034f-c7bb-4df7-935e-8c5f62fea434
+  name: demo-app
+  namespace: aws-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app_environment_id: 023b4d66-b63b-4b7f-aa24-62109172d4fa
+      env_id: a2651489-100e-4f7f-9e1c-da53432c7fff
+      env_name: staging-aws
+      organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+      platformer_app_id: 25e18063-59ba-483f-a990-7e8509cc800c
+      platformer_app_name: demo-app
+      platformer_component: rudder
+      platformer_system: "true"
+      project_id: a028034f-c7bb-4df7-935e-8c5f62fea434
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        platformer.com/reload-hash: fb64c638-ddf9-4ede-a278-3553ba72eb33
+      labels:
+        app_environment_id: 023b4d66-b63b-4b7f-aa24-62109172d4fa
+        env_id: a2651489-100e-4f7f-9e1c-da53432c7fff
+        env_name: staging-aws
+        organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+        platformer_app_id: 25e18063-59ba-483f-a990-7e8509cc800c
+        platformer_app_name: demo-app
+        platformer_component: rudder
+        platformer_system: "true"
+        project_id: a028034f-c7bb-4df7-935e-8c5f62fea434
+    spec:
+      containers:
+      - image: ghcr.io/platformercloud/public-demo:master-72c884769e92321865aef4f308b2c02636174f09
+        imagePullPolicy: Always
+        name: demo-app
+        ports:
+        - containerPort: 8080
+          name: port-8080
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 50m
+            memory: 128Mi
+      imagePullSecrets:
+      - name: reg-demo-app-3192360657
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 60
