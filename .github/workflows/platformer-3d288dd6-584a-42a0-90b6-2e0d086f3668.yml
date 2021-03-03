@@ -37,3 +37,4 @@ jobs:
           image-name: ${{env.SERVICE_NAME}}
           tag: ${{steps.event-version.outputs.SOURCE_TAG }}
           container-id: b217a87e-a71e-4ded-ac9e-731412590a95
+          
