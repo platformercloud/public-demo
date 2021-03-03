@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations: {}
+  labels:
+    app_environment_id: 023b4d66-b63b-4b7f-aa24-62109172d4fa
+    env_id: a2651489-100e-4f7f-9e1c-da53432c7fff
+    env_name: staging-aws
+    organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+    platformer_app_id: 25e18063-59ba-483f-a990-7e8509cc800c
+    platformer_app_name: demo-app
+    platformer_component: rudder
+    platformer_system: "true"
+    project_id: a028034f-c7bb-4df7-935e-8c5f62fea434
+  name: demo-app
+  namespace: aws-test
+spec:
+  ports:
+  - name: port-8080
+    port: 8080
+    targetPort: 8080
+  selector:
+    app_environment_id: 023b4d66-b63b-4b7f-aa24-62109172d4fa
+    env_id: a2651489-100e-4f7f-9e1c-da53432c7fff
+    env_name: staging-aws
+    organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+    platformer_app_id: 25e18063-59ba-483f-a990-7e8509cc800c
+    platformer_app_name: demo-app
+    platformer_component: rudder
+    platformer_system: "true"
+    project_id: a028034f-c7bb-4df7-935e-8c5f62fea434
+  type: ClusterIP
