@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    reloader.stakater.com/auto: "true"
+  labels:
+    app_environment_id: 8a7706ed-27d9-423f-9557-434247505350
+    env_id: a2651489-100e-4f7f-9e1c-da53432c7fff
+    env_name: staging-aws
+    organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+    platformer_app_id: 608c48fe-16f3-4c82-94c9-f40fbdaada21
+    platformer_app_name: vetstoria
+    platformer_component: rudder
+    platformer_system: "true"
+    project_id: a028034f-c7bb-4df7-935e-8c5f62fea434
+  name: vetstoria
+  namespace: aws-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app_environment_id: 8a7706ed-27d9-423f-9557-434247505350
+      env_id: a2651489-100e-4f7f-9e1c-da53432c7fff
+      env_name: staging-aws
+      organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+      platformer_app_id: 608c48fe-16f3-4c82-94c9-f40fbdaada21
+      platformer_app_name: vetstoria
+      platformer_component: rudder
+      platformer_system: "true"
+      project_id: a028034f-c7bb-4df7-935e-8c5f62fea434
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        platformer.com/reload-hash: 34c4735d-82e3-4c7d-aace-0f59385f98a1
+      labels:
+        app_environment_id: 8a7706ed-27d9-423f-9557-434247505350
+        env_id: a2651489-100e-4f7f-9e1c-da53432c7fff
+        env_name: staging-aws
+        organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+        platformer_app_id: 608c48fe-16f3-4c82-94c9-f40fbdaada21
+        platformer_app_name: vetstoria
+        platformer_component: rudder
+        platformer_system: "true"
+        project_id: a028034f-c7bb-4df7-935e-8c5f62fea434
+    spec:
+      containers:
+      - image: ghcr.io/platformercloud/public-demo:master-d37c27b0ff4353ee7e70ef7bcc838dd869a52fd7
+        imagePullPolicy: Always
+        name: vetstoria
+        ports:
+        - containerPort: 8080
+          name: port-8080
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 50m
+            memory: 128Mi
+      imagePullSecrets:
+      - name: reg-vetstoria-3192360657
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 60

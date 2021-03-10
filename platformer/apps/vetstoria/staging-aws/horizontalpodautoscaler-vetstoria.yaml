@@ -1,0 +1,24 @@
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations: null
+  labels:
+    app_environment_id: 8a7706ed-27d9-423f-9557-434247505350
+    env_id: a2651489-100e-4f7f-9e1c-da53432c7fff
+    env_name: staging-aws
+    hpa_id: 170c312f-90c3-4e75-8c56-ab72963ffa33
+    organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+    platformer_app_id: 608c48fe-16f3-4c82-94c9-f40fbdaada21
+    platformer_app_name: vetstoria
+    platformer_component: rudder
+    platformer_system: "true"
+    project_id: a028034f-c7bb-4df7-935e-8c5f62fea434
+  name: vetstoria
+  namespace: aws-test
+spec:
+  maxReplicas: 1
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: vetstoria
