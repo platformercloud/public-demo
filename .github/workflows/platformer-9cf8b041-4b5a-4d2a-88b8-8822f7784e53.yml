@@ -2,7 +2,7 @@ name: Platformer Generated master-push Build
 on:
   push:
     branches:
-      - master-push
+      - master
 jobs:
   build:
     runs-on:
