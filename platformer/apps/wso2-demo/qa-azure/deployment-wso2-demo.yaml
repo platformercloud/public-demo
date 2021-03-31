@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    reloader.stakater.com/auto: "true"
+  labels:
+    app_environment_id: 7eff5871-1319-4f77-ae8b-a897e3f2d3c7
+    env_id: f3f6c107-7d10-43f0-b820-f78fa7a30356
+    env_name: qa-azure
+    organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+    platformer_app_id: 86addb01-28ff-44aa-bf02-1b935a0b4e64
+    platformer_app_name: wso2-demo
+    platformer_component: rudder
+    platformer_system: "true"
+    project_id: a028034f-c7bb-4df7-935e-8c5f62fea434
+  name: wso2-demo
+  namespace: azure-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app_environment_id: 7eff5871-1319-4f77-ae8b-a897e3f2d3c7
+      env_id: f3f6c107-7d10-43f0-b820-f78fa7a30356
+      env_name: qa-azure
+      organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+      platformer_app_id: 86addb01-28ff-44aa-bf02-1b935a0b4e64
+      platformer_app_name: wso2-demo
+      platformer_component: rudder
+      platformer_system: "true"
+      project_id: a028034f-c7bb-4df7-935e-8c5f62fea434
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        platformer.com/reload-hash: 38bad7da-6051-4c17-a25e-db8674e38163
+      labels:
+        app_environment_id: 7eff5871-1319-4f77-ae8b-a897e3f2d3c7
+        env_id: f3f6c107-7d10-43f0-b820-f78fa7a30356
+        env_name: qa-azure
+        organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+        platformer_app_id: 86addb01-28ff-44aa-bf02-1b935a0b4e64
+        platformer_app_name: wso2-demo
+        platformer_component: rudder
+        platformer_system: "true"
+        project_id: a028034f-c7bb-4df7-935e-8c5f62fea434
+    spec:
+      containers:
+      - image: ghcr.io/platformercloud/public-demo:master-b16c883e80605066b36f4513f979a04863863857
+        imagePullPolicy: Always
+        name: wso2-demo
+        ports:
+        - containerPort: 8080
+          name: port-8080
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 50m
+            memory: 128Mi
+        volumeMounts:
+        - mountPath: /test
+          name: 2952c908-9bae-4799-820e-4643d83bb994
+          subPath: sa
+      imagePullSecrets:
+      - name: reg-jk-demo-3192360657
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 60
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: asdas-509730658
+        name: 2952c908-9bae-4799-820e-4643d83bb994

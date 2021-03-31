@@ -1,0 +1,24 @@
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations: null
+  labels:
+    app_environment_id: 7eff5871-1319-4f77-ae8b-a897e3f2d3c7
+    env_id: f3f6c107-7d10-43f0-b820-f78fa7a30356
+    env_name: qa-azure
+    hpa_id: 93682f6b-15fe-4f03-bca8-3ab2b6853f57
+    organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+    platformer_app_id: 86addb01-28ff-44aa-bf02-1b935a0b4e64
+    platformer_app_name: wso2-demo
+    platformer_component: rudder
+    platformer_system: "true"
+    project_id: a028034f-c7bb-4df7-935e-8c5f62fea434
+  name: wso2-demo
+  namespace: azure-test
+spec:
+  maxReplicas: 1
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: wso2-demo
