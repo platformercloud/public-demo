@@ -1,0 +1,24 @@
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations: null
+  labels:
+    app_environment_id: 068949ac-0f68-4c4c-ac9e-d4e9ae98c591
+    env_id: 942bf6a2-314e-48c9-a21c-ea0d64d63278
+    env_name: test-gke
+    hpa_id: 30f8d21b-4b1a-4c5c-95b9-4420eb5a0e40
+    organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+    platformer_app_id: a167f0e0-7665-4d59-9b0f-f0d9af81f65f
+    platformer_app_name: google-test
+    platformer_component: rudder
+    platformer_system: "true"
+    project_id: a028034f-c7bb-4df7-935e-8c5f62fea434
+  name: google-test
+  namespace: gke-test
+spec:
+  maxReplicas: 1
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: google-test
