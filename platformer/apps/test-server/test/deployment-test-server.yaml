@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    reloader.stakater.com/auto: "true"
+  labels:
+    app_environment_id: 68f81e64-2f08-4eac-ae76-e3eebcc91151
+    env_id: 4554ca6e-2040-4f32-bc32-a4329da8de3a
+    env_name: test
+    organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+    platformer_app_id: 26758534-f30b-4e7f-a106-c989b4dce916
+    platformer_app_name: test-server
+    platformer_component: rudder
+    platformer_system: "true"
+    project_id: ecd3b141-e623-4c94-b1f5-61fbb7e92540
+  name: test-server
+  namespace: test
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app_environment_id: 68f81e64-2f08-4eac-ae76-e3eebcc91151
+      env_id: 4554ca6e-2040-4f32-bc32-a4329da8de3a
+      env_name: test
+      organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+      platformer_app_id: 26758534-f30b-4e7f-a106-c989b4dce916
+      platformer_app_name: test-server
+      platformer_component: rudder
+      platformer_system: "true"
+      project_id: ecd3b141-e623-4c94-b1f5-61fbb7e92540
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        platformer.com/reload-hash: 4df935f6-68f8-46c0-9a4c-60164e9b8179
+      labels:
+        app_environment_id: 68f81e64-2f08-4eac-ae76-e3eebcc91151
+        env_id: 4554ca6e-2040-4f32-bc32-a4329da8de3a
+        env_name: test
+        organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+        platformer_app_id: 26758534-f30b-4e7f-a106-c989b4dce916
+        platformer_app_name: test-server
+        platformer_component: rudder
+        platformer_system: "true"
+        project_id: ecd3b141-e623-4c94-b1f5-61fbb7e92540
+    spec:
+      containers:
+      - image: ghcr.io/platformercloud/public-demo:master-6ae61590e2372f387b3962eaa8c21f5a2ae0579c
+        imagePullPolicy: Always
+        name: test-server
+        ports:
+        - containerPort: 8080
+          name: port-8080
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 50m
+            memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 128Mi
+      imagePullSecrets:
+      - name: reg-test-server-3192360657
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 60
