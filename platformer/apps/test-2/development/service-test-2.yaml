@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations: {}
+  labels:
+    app_environment_id: ecac1bc0-9a7f-46be-a73f-7144b111dff6
+    env_id: 837ba472-4c34-457a-847d-2983624e35e2
+    env_name: development
+    organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+    platformer_app_id: ecebb44f-c8e4-4bae-8679-40dcf1158ed8
+    platformer_app_name: test-2
+    platformer_component: rudder
+    platformer_system: "true"
+    project_id: ecd3b141-e623-4c94-b1f5-61fbb7e92540
+  name: test-2
+  namespace: development
+spec:
+  ports:
+  - name: port-8080
+    port: 8080
+    targetPort: 8080
+  selector:
+    app_environment_id: ecac1bc0-9a7f-46be-a73f-7144b111dff6
+    env_id: 837ba472-4c34-457a-847d-2983624e35e2
+    env_name: development
+    organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+    platformer_app_id: ecebb44f-c8e4-4bae-8679-40dcf1158ed8
+    platformer_app_name: test-2
+    platformer_component: rudder
+    platformer_system: "true"
+    project_id: ecd3b141-e623-4c94-b1f5-61fbb7e92540
+  type: ClusterIP
