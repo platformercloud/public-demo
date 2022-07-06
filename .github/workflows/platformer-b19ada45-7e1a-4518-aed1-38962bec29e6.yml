@@ -25,7 +25,7 @@ jobs:
         run: docker build --tag ${SERVICE_NAME}:${{steps.event-version.outputs.SOURCE_TAG }} --file Dockerfile .
       - name: GitHub Image Push
         run: docker push $SERVICE_NAME:${{steps.event-version.outputs.SOURCE_TAG }}
-      - name: Platformer Deploy
+      - name: Platformer Deploy1
         uses: platformer-com/build-deploy-action@v1
         with:
           org-id: ${{secrets.ORG_ID_A5A87836_9B47_46A1_899E_3F051D2585B7}}
