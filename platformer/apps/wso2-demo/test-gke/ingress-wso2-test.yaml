@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/affinity: cookie
+    nginx.ingress.kubernetes.io/affinity-mode: balanced
+    nginx.ingress.kubernetes.io/backend-protocol: http
+    nginx.ingress.kubernetes.io/permanent-redirect-code: "301"
+    nginx.ingress.kubernetes.io/proxy-body-size: 500m
+    nginx.ingress.kubernetes.io/session-cookie-hash: sha1
+    nginx.ingress.kubernetes.io/session-cookie-name: route
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/whitelist-source-range: 0.0.0.0/0
+    platformer_ingress_id: 1a7836a5-658d-48bd-a447-0d1bf92516e4
+  labels:
+    platformer_ingress_id: 1a7836a5-658d-48bd-a447-0d1bf92516e4
+  name: wso2-test
+  namespace: gke-test
+spec:
+  rules:
+  - host: test.wso2-test.platformer.cloud
+    http:
+      paths:
+      - backend:
+          serviceName: wso2-demo
+          servicePort: 8080
+        path: /
+  tls:
+  - hosts:
+    - test.wso2-test.platformer.cloud
+    secretName: ""
