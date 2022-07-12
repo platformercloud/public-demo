@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations: {}
+  labels:
+    app_environment_id: 6849e6ee-39cb-4e91-a657-6e95e4082224
+    env_id: 942bf6a2-314e-48c9-a21c-ea0d64d63278
+    env_name: test-gke
+    organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+    platformer_app_id: baa35a1c-9f60-4f24-bde7-d5331fbb35a0
+    platformer_app_name: wso2-demo
+    platformer_component: rudder
+    platformer_system: "true"
+    project_id: a028034f-c7bb-4df7-935e-8c5f62fea434
+  name: wso2-demo
+  namespace: gke-test
+spec:
+  ports:
+  - name: port-8080
+    port: 8080
+    targetPort: 8080
+  selector:
+    app_environment_id: 6849e6ee-39cb-4e91-a657-6e95e4082224
+    env_id: 942bf6a2-314e-48c9-a21c-ea0d64d63278
+    env_name: test-gke
+    organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+    platformer_app_id: baa35a1c-9f60-4f24-bde7-d5331fbb35a0
+    platformer_app_name: wso2-demo
+    platformer_component: rudder
+    platformer_system: "true"
+    project_id: a028034f-c7bb-4df7-935e-8c5f62fea434
+  type: ClusterIP

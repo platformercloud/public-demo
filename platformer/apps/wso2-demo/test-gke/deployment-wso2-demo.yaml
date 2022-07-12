@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    reloader.stakater.com/auto: "true"
+  labels:
+    app_environment_id: 6849e6ee-39cb-4e91-a657-6e95e4082224
+    env_id: 942bf6a2-314e-48c9-a21c-ea0d64d63278
+    env_name: test-gke
+    organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+    platformer_app_id: baa35a1c-9f60-4f24-bde7-d5331fbb35a0
+    platformer_app_name: wso2-demo
+    platformer_component: rudder
+    platformer_system: "true"
+    project_id: a028034f-c7bb-4df7-935e-8c5f62fea434
+  name: wso2-demo
+  namespace: gke-test
+spec:
+  replicas: 1
+  revisionHistoryLimit: 4
+  selector:
+    matchLabels:
+      app_environment_id: 6849e6ee-39cb-4e91-a657-6e95e4082224
+      env_id: 942bf6a2-314e-48c9-a21c-ea0d64d63278
+      env_name: test-gke
+      organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+      platformer_app_id: baa35a1c-9f60-4f24-bde7-d5331fbb35a0
+      platformer_app_name: wso2-demo
+      platformer_component: rudder
+      platformer_system: "true"
+      project_id: a028034f-c7bb-4df7-935e-8c5f62fea434
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        platformer.com/reload-hash: cec318a7-f057-4330-a204-cdd593b63ce6
+      labels:
+        app_environment_id: 6849e6ee-39cb-4e91-a657-6e95e4082224
+        env_id: 942bf6a2-314e-48c9-a21c-ea0d64d63278
+        env_name: test-gke
+        organization_id: de1ff33e-ae24-4890-9203-0c1b40f36be9
+        platformer_app_id: baa35a1c-9f60-4f24-bde7-d5331fbb35a0
+        platformer_app_name: wso2-demo
+        platformer_component: rudder
+        platformer_system: "true"
+        project_id: a028034f-c7bb-4df7-935e-8c5f62fea434
+    spec:
+      containers:
+      - image: ghcr.io/platformercloud/public-demo:master-7f086f013523c8f0828eec2637fbd98c123eb457
+        imagePullPolicy: Always
+        name: wso2-demo
+        ports:
+        - containerPort: 8080
+          name: port-8080
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 50m
+            memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 128Mi
+        volumeMounts:
+        - mountPath: /app/config/config.json
+          name: b1a1c70d-9102-4dbb-be45-747be001ef3d
+          subPath: config.json
+      imagePullSecrets:
+      - name: reg-wso2-demo-3192360657
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 60
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: config-for-wso2-613177538
+        name: b1a1c70d-9102-4dbb-be45-747be001ef3d
